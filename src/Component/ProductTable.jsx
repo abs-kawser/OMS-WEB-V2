@@ -12,17 +12,17 @@ import SeletedProduct from "./SeletedProduct";
 import { arrayIncludes } from "@mui/x-date-pickers/internals/utils/utils";
 
 export default function ProductTable({ Products }) {
-  // console.log("Products",Products);
 
   const [selectedProductList, setSelectedProductList] = useState([]);
-
   let result = window.localStorage.getItem("selectedItemLists");
   const arr = JSON.parse(result);
+
+  // console.log("Products",Products);
   // console.log("my arr: ", arr);
 
+  
   const handleChange = (id, quantity) => {
-    
-    console.log(selectedProductList);
+    // console.log(selectedProductList);
     let temp = Array.from(
       selectedProductList.length ? selectedProductList : Products
     );
@@ -36,8 +36,7 @@ export default function ProductTable({ Products }) {
     window.localStorage.setItem("selectedItemLists", JSON.stringify(temp));
   };
 
-  return (
-    
+  return (   
     <div style={{ width: "800px", margin: "auto" }}>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -77,5 +76,6 @@ export default function ProductTable({ Products }) {
         </Table>
       </TableContainer>
     </div>
+
   );
 }

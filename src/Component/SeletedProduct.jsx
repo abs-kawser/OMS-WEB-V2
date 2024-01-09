@@ -12,7 +12,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export default function SeletedProduct({ selectedProductList }) {
-
   // const data = window.localStorage.getItem("selectedItemLists");
   // const tempData = JSON.parse(data);
   // let selectedArr = [];
@@ -20,8 +19,9 @@ export default function SeletedProduct({ selectedProductList }) {
   //   if (elem.quantity > 0) selectedArr.push(elem);
   // });
 
-  
   const [selectedArr, setSelectedArr] = useState([]);
+   console.log("selectedArr",selectedArr);
+
   useEffect(() => {
     // Retrieve data from local storage
     const data = window.localStorage.getItem("selectedItemLists");
@@ -40,23 +40,13 @@ export default function SeletedProduct({ selectedProductList }) {
     setSelectedArr(filteredArr);
   }, []);
 
-
-
-
-
-
-
-
-
-
   const navigate = useNavigate();
   const changePath = () => {
     navigate("/orderDetails");
   };
 
+  
   return (
-
-
 <div>
 <h1 className="textCenter">All Order Products</h1>
 <div className="textCenter">
@@ -108,7 +98,5 @@ export default function SeletedProduct({ selectedProductList }) {
   <button>Submit</button>
 </div>
 </div>
-
-
   );
 }

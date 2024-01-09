@@ -1,28 +1,24 @@
-import { Button} from "@mui/material";
+import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { BASE_URL, PASSWORD, USERNAME, blackColor } from "./../../varible";
 import base64 from "base-64";
 import ProductTable from "../Component/ProductTable";
 import { Link, useLocation } from "react-router-dom";
 
-import SeletedProduct from './../Component/SeletedProduct';
-
-
+import SeletedProduct from "./../Component/SeletedProduct";
 
 const OrderDetails = () => {
-
   const location = useLocation();
   const requestData = location.state?.requestData;
-  
-  console.log('requestData come from Odetails',requestData);
-  
+
+  console.log("requestData come from Odetails", requestData);
+
   const [showProductData, setShowProductData] = useState(true);
   const [showOrderData, setShowOrderData] = useState(false);
   const [productData, setProductData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // console.log({ productData });
-
 
   const handleProductButtonPress = () => {
     setShowProductData(true);
@@ -32,7 +28,7 @@ const OrderDetails = () => {
   const handleOrderButtonPress = () => {
     setShowProductData(false);
     setShowOrderData(true);
-  };  
+  };
 
   const fetchProductDatax = async () => {
     try {
@@ -47,20 +43,17 @@ const OrderDetails = () => {
       const result = await response.json();
       // console.log("jsonData",typeof(result));
       console.log({ result });
-      setProductData(result)
+      setProductData(result);
       setIsLoading(false);
       // return jsonData;
     } catch (error) {
       console.error("Error fetching data:", error);
-
     }
-  }
+  };
 
   useEffect(() => {
     fetchProductDatax();
   }, []);
-
-
 
   return (
     <div>
@@ -75,35 +68,26 @@ const OrderDetails = () => {
           marginBottom: "50px",
         }}
       >
-        <Button variant="contained" onClick={handleProductButtonPress}
-        >Product List</Button>
-        <Link to="/selectedproduct"><Button variant="contained"
-          onClick={handleOrderButtonPress}
-        >Order Details</Button></Link>
+        <Button variant="contained" onClick={handleProductButtonPress}>
+          Product List
+        </Button>
+        <Link to="/selectedproduct">
+          <Button variant="contained" onClick={handleOrderButtonPress}>
+            Order Details
+          </Button>
+        </Link>
       </div>
 
       {/* product data part  */}
-      <>
-        {
-          showProductData && (
-            <ProductTable Products={productData} />
-          )
-        }
-
-      </> 
-
-
-
+      <>{showProductData && <ProductTable Products={productData} />}</>
 
       <>
-       {
+        {/* {
         showOrderData &&(
           <SeletedProduct/>
         )
-       }
+       } */}
       </>
-
-
     </div>
   );
 };

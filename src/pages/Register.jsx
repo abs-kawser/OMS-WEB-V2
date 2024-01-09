@@ -3,10 +3,7 @@ import "../styless/Register.css";
 import { Link } from "react-router-dom";
 
 function Register() {
-
-
-
-  return (  
+  return (
     <div style={{}}>
       <h1 style={{ color: "blue", textAlign: "center" }}>Welcome to OMS</h1>
       {/* <h1 className='check'>check </h1> */}
